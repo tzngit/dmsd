@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" ng-app="dbms">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>DMSD</title>
+    <link href="/static/favicon.ico" rel="icon" type="image/x-icon" />
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+<body>
+    <div class="container" ng-Controller="BodyController">
+        <div class="jumbotron">
+            <h2>Douban Music Site Downloader</h2>
+        </div>
+        <div><p class="font-weight-light">Enter an url, e.g., https://site.douban.com/OrangyCyan/</p></div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">URL</span>
+            </div>
+            <input type="text" class="form-control" placeholder="https://site.douban.com/OrangyCyan/" ng-model="site_url">
+            <div class="input-group-append">
+                <button ng-disabled="!site_url" class="btn btn-outline-secondary" type="button" ng-click="parse(site_url)">Alohomora</button>
+            </div>
+        </div>
+        <ul class="list-group" ng-show="song_records.length > 0">
+            <li class="list-group-item d-flex justify-content-between align-items-start" ng-repeat="song in song_records">
+                {{song.Name}}
+                <audio controls="" type="audio/mp3" ng-src="{{song.RawUrl | trustUrl}}"></audio>
+            </li>
+        </ul>
+    </div>
+    <script src="/static/js/jquery-3.2.1.slim.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/angular.min.js"></script>
+    <script src="/static/js/ui-bootstrap-tpls-0.13.0.js"></script>
+    <script src="/static/js/index.js"></script>
+</body>
+</html>
